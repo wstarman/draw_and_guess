@@ -1,47 +1,15 @@
-import type { Message, Player, GameState } from "./types";
+import { ref, type Ref } from "vue";
+import { type Message, type Player, GameState } from "./types";
 
 export class Game {
-    static gameState: GameState = "guessing";
-    static myNickname: String = "";
-    static myScore: Number = 0;
-    static isDrawer: boolean = false;
-    static countDown: 99;
-    static isOwner: false;
-    static messages: Message[] = [     // TODO: remove testing data
-        {
-            sender: "aaa",
-            content: "test",
-            isAnswer: false
-        },
-        {
-            sender: "bbb",
-            content: "test2",
-            isAnswer: false
-        },
-        {
-            sender: "aaa",
-            content: "answer",
-            isAnswer: true
-        }
-    ];
-    static players: Player[] = [// TODO: remove testing data
-        {
-            nickname: "aaa",
-            score: 100,
-            isDrawer: true,
-            isMe: false,
-        },
-        {
-            nickname: "bbb",
-            score: 9999,
-            isDrawer: false,
-            isMe: true,
-        },
-        {
-            nickname: "ccc",
-            score: 0,
-            isDrawer: false,
-            isMe: false,
-        },
-    ]
+    static gameState: Ref<GameState> = ref(GameState.homepage);
+    static myNickname = ref("");
+    static myScore = ref(0);
+    static isHoster = ref(false);
+    static roomId = ref("")
+    static countDown = ref(99);
+    static hintWord = ref("");
+    static answer = ref("");
+    static messages: Ref<Message[]> = ref([]);
+    static players: Ref<Player[]> = ref([]);
 }

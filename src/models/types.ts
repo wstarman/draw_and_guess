@@ -11,4 +11,14 @@ export type Player = {
     isMe: boolean;
 }
 
-export type GameState = "waitingToStart" | "selecting" | "drawing" | "waitingToSelect" | "guessing" | "guessed" | "revealing" | "awarding"
+export enum GameState {
+    "homepage",     // in the homepage
+    "waitingRoom",  // in the waiting room
+    "selecting",    // selecting a word to draw
+    "drawing",      // player are drawing
+    "waitingOtherSelecting",    // other drawer is selecting
+    "guessing",     // other is drawing
+    "guessed",      // player already gussed the word
+    "revealing",    // the answer is revealing
+    "awarding"      // game over, and showing rank and score
+}
