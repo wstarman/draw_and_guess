@@ -7,5 +7,8 @@ import { ref } from 'vue';
 </script>
 
 <template>
-    This is the showing pad.
+    Other is drawing now.
+    Here will show there drawing.
 </template>
+
+<style scoped></style>

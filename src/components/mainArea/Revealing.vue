@@ -6,5 +6,7 @@ import { Game } from '@/models/Game';
 import { ref } from 'vue';
 </script>
 <template>
-    This is the text pad.
+    The answer is ...
 </template>
+
+<style scoped></style>

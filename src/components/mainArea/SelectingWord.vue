@@ -5,6 +5,10 @@
 import { Game } from '@/models/Game';
 import { ref } from 'vue';
 </script>
+
 <template>
     Please select the word.
 </template>
+
+<style scoped>
+</style>

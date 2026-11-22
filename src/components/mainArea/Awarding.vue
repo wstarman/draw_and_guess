@@ -5,6 +5,10 @@
 import { Game } from '@/models/Game';
 import { ref } from 'vue';
 </script>
+
 <template>
     This is the podium.
 </template>
+
+<style scoped>
+</style>

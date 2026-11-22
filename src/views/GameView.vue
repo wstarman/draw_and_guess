@@ -6,17 +6,18 @@ import StatusBar from '@/components/StatusBar.vue';
 import WaitingRoom from '@/components/mainArea/WaitingRoom.vue';
 import { Game } from '@/models/Game';
 import { GameState } from '@/models/types';
-import { onMounted } from 'vue';
-import TextPad from '@/components/mainArea/TextPad.vue';
-import Rewarding from '@/components/mainArea/Rewarding.vue';
+import Awarding from '@/components/mainArea/Awarding.vue';
 import ShowingPad from '@/components/mainArea/ShowingPad.vue';
+import WaitingOtherSelecting from '@/components/mainArea/WaitingOtherSelecting.vue';
+import Revealing from '@/components/mainArea/Revealing.vue';
+import SelectingWord from '@/components/mainArea/SelectingWord.vue';
 
 function backToHome() {
     Game.gameState.value = GameState.homepage;
 }
 
-function test() {
-    Game.gameState.value = GameState.revealing;
+function changeState(state: GameState) {
+    Game.gameState.value = state;
 }
 
 </script>
@@ -31,16 +32,26 @@ function test() {
                 Main Area:
                 <div class="main-area">
                     <WaitingRoom v-if="Game.gameState.value === GameState.waitingRoom" />
-                    <DrawingPad v-if="[GameState.selecting, GameState.drawing].includes(Game.gameState.value)" />
+                    <SelectingWord v-if="Game.gameState.value === GameState.selecting" />
+                    <DrawingPad v-if="Game.gameState.value === GameState.drawing" />
                     <ShowingPad v-if="[GameState.guessing, GameState.guessed].includes(Game.gameState.value)" />
-                    <TextPad
-                        v-if="[GameState.waitingOtherSelecting, GameState.revealing].includes(Game.gameState.value)" />
-                    <Rewarding v-if="Game.gameState.value === GameState.awarding" />
+                    <WaitingOtherSelecting v-if="Game.gameState.value === GameState.waitingOtherSelecting" />
+                    <Revealing v-if="Game.gameState.value === GameState.revealing" />
+                    <Awarding v-if="Game.gameState.value === GameState.awarding" />
                 </div>
             </div>
             <MessageArea />
         </div>
-        <button @click="test"> test </button>
+        <div>
+            [Test] change state to:
+            <button @click="changeState(GameState.waitingOtherSelecting)"> waitingOtherSelecting </button>
+            <button @click="changeState(GameState.guessing)"> guessing </button>
+            <button @click="changeState(GameState.guessed)"> guessed </button>
+            <button @click="changeState(GameState.selecting)"> selecting </button>
+            <button @click="changeState(GameState.drawing)"> drawing </button>
+            <button @click="changeState(GameState.revealing)"> revealing </button>
+            <button @click="changeState(GameState.awarding)"> awarding </button>
+        </div>
     </div>
 </template>
 

@@ -5,6 +5,9 @@
 import { Game } from '@/models/Game';
 import { ref } from 'vue';
 </script>
+
 <template>
     This is the drawing pad.
 </template>
+
+<style scoped></style>
