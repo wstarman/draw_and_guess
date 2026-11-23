@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { Game } from '@/models/Game';
 import { GameState } from '@/models/types';
-import { ref } from 'vue';
 
 function startGame() {
     // TODO: really start a game
@@ -10,16 +9,14 @@ function startGame() {
 </script>
 
 <template>
-    <div class="main-container">
-        This is the waiting room.
-        The room id is {{ Game.roomId }}
-        <button @click="startGame" v-bind:disabled=!Game.isHoster.value> START THE GAME </button>
+    <div class="board center">
+        <h1>This is the waiting room</h1>
+        <p>Share the room id with your friends</p>
+        <div class="code">{{ Game.roomId.value }}</div>
+        <button class="yellow-btn" @click="startGame" :disabled="!Game.isHoster.value">
+            ▶ Start the game
+        </button>
     </div>
 </template>
 
-<style scoped>
-.main-container {
-    display: flex;
-    flex-direction: column;
-}
-</style>
+<style scoped></style>

@@ -138,3 +138,6 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   font-size: 21px;
 }
 .hintpill svg.i { stroke: #a56a1d; fill: #ffc933; }
+
+.logo .draw { color: #4a90ff; }
+.logo .guess { color: var(--yellow); }

@@ -1,35 +1,76 @@
 <script setup lang="ts">
-import { Game } from '@/models/Game';
-import { GameState } from '@/models/types';
-import { ref } from 'vue';
-
-const players = ref(Game.players)
-
+import Icon from '@/components/Icon.vue'
+import { Game } from '@/models/Game'
 </script>
 
 <template>
-    <div class="main-container">
-        <div>
-            <div>Room: {{ Game.roomId }}</div>
-            <div>Name: {{ Game.myNickname }}</div>
-            <div>GameState: {{ GameState[Game.gameState.value] }}</div>
-        </div>
-        <div>
-            {{ Game.hintWord }}
-        </div>
-        <div>
-            Time: {{ Game.countDown }}
+    <div class="status">
+        <div class="statusbar pill">
+            <div class="stat">
+                <Icon name="room" />
+                <span class="label">Room</span>
+                <span class="value">{{ Game.roomId.value }}</span>
+            </div>
+            <span class="divider"></span>
+            <div class="stat">
+                <Icon name="user" />
+                <span class="label">Name</span>
+                <span class="value">{{ Game.myNickname.value }}</span>
+            </div>
+            <span class="divider"></span>
+            <div class="stat">
+                <Icon name="clock" />
+                <span class="label">Time</span>
+                <span class="value">{{ Game.countDown }}s</span>
+            </div>
         </div>
     </div>
 </template>
 
 <style scoped>
-.main-container {
+.status {
+    flex: 1;
     display: flex;
-    border: 2px solid;
-    padding: 1rem;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 80%;
+    justify-content: center;
+    min-width: 0;
+}
+
+.statusbar {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+    background: var(--card);
+    padding: 10px 28px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 17px;
+}
+
+.label {
+    color: var(--mute);
+}
+
+.value {
+    color: var(--ink);
+}
+
+.divider {
+    width: 2px;
+    height: 22px;
+    background: var(--line);
+    border-radius: 2px;
+}
+
+@media (max-width: 640px) {
+    .statusbar {
+        gap: 12px;
+        padding: 10px 16px;
+    }
 }
 </style>

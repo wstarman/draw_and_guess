@@ -1,14 +1,70 @@
-/**
-* when a game is completed, show the rank and scores.
-*/
 <script setup lang="ts">
+import { computed } from 'vue';
 import { Game } from '@/models/Game';
-import { ref } from 'vue';
+
+// เรียงตามคะแนน แล้วจัดเป็น อันดับ 2 | 1 | 3 (อันดับ 1 อยู่กลางและสูงสุด)
+const podium = computed(() => {
+    const top = [...Game.players.value].sort((a, b) => b.score - a.score).slice(0, 3)
+    const view = (rank: number) => {
+        const p = top[rank]
+        if (!p) return null
+        return {
+            rank,
+            name: (rank === 0 ? '👑 ' : '') + (p.isMe ? 'You' : p.nickname),
+            score: p.score,
+        }
+    }
+    return [view(1), view(0), view(2)].filter(Boolean) as { rank: number; name: string; score: number }[]
+})
 </script>
 
 <template>
-    This is the podium.
+    <div class="board center">
+        <h1>🏆 Round results</h1>
+        <div class="podium">
+            <div v-for="p in podium" :key="p.rank" class="step" :class="'rank' + p.rank">
+                <span>{{ p.name }}</span>
+                <b>{{ p.score }} pts</b>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style scoped>
+.podium {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.step {
+    width: 104px;
+    border-radius: 16px 16px 0 0;
+    padding: 10px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+}
+
+.step b {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.rank0 {
+    background: #ffcd57;
+    height: 150px;
+}
+
+.rank1 {
+    background: #d9dcef;
+    height: 110px;
+}
+
+.rank2 {
+    background: #ffc9a8;
+    height: 80px;
+}
 </style>

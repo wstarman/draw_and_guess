@@ -1,12 +1,18 @@
-/**
-* used to show simple message like who is selecting word or what is the answer.
-*/
 <script setup lang="ts">
+import { computed } from 'vue';
 import { Game } from '@/models/Game';
-import { ref } from 'vue';
+
+const drawerName = computed(
+    () => Game.players.value.find(p => p.isDrawer)?.nickname ?? 'Someone'
+)
 </script>
+
 <template>
-    waiting for other to select the word...
+    <div class="board center">
+        <div class="big-emoji">🤔</div>
+        <h1>{{ drawerName }} is choosing a word</h1>
+        <p>Get ready to guess!</p>
+    </div>
 </template>
 
 <style scoped></style>
