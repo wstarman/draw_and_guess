@@ -4,7 +4,7 @@ import { Game } from '@/models/Game';
 import { GameState } from '@/models/types';
 
 // TODO: get the real 3 word choices from the server
-// ตอนนี้ตัวเลือกแรกคือ Game.answer ส่วนอีกสองตัวเป็นคำชั่วคราว
+// For now the first choice is Game.answer and the other two are placeholder words
 const words = computed(() => [Game.answer.value, 'rocket', 'banana'])
 
 function pickWord(_word: string) {

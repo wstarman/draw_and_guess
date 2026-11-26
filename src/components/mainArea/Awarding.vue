@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import { Game } from '@/models/Game';
 
-// เรียงตามคะแนน แล้วจัดเป็น อันดับ 2 | 1 | 3 (อันดับ 1 อยู่กลางและสูงสุด)
+// Sort by score, then arrange as 2nd | 1st | 3rd (1st place in the middle and tallest)
 const podium = computed(() => {
     const top = [...Game.players.value].sort((a, b) => b.score - a.score).slice(0, 3)
     const view = (rank: number) => {

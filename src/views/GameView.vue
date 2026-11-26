@@ -28,7 +28,7 @@ const drawerName = computed(
     () => Game.players.value.find(p => p.isDrawer)?.nickname ?? 'Someone'
 )
 
-// หัวข้อ + คำใบ้ ที่แถบบนของ main area (ตามดีไซน์แต่ละสถานะ)
+// Title + hint in the top bar of the main area (per the design for each state)
 const topbar = computed(() => {
     switch (Game.gameState.value) {
         case GameState.waitingRoom:
