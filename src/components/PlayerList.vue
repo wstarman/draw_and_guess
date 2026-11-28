@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import Icon from '@/components/Icon.vue'
 import { Game } from '@/models/Game';
+import { GameState } from '@/models/types';
 import { ref } from 'vue';
 
 const players = ref(Game.players)
 
-// อวาตาร์ตามลำดับผู้เล่น (ไม่ต้องแก้ model)
+// Avatars by player order (no need to change the model)
 const avatars = [
     { emoji: '🐰', bg: '#ffe3a8' },
     { emoji: '🐻', bg: '#e3c9a8' },
@@ -42,7 +43,7 @@ function copyRoomId() {
             </div>
         </div>
 
-        <button class="invite" @click="copyRoomId">
+        <button class="invite" @click="copyRoomId" v-if="Game.gameState.value == GameState.waitingRoom">
             <Icon name="plus" /> Invite Friends · {{ Game.roomId.value }}
         </button>
     </section>

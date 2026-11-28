@@ -19,7 +19,7 @@ let ctx: CanvasRenderingContext2D | null = null
 let drawing = false
 let observer: ResizeObserver | null = null
 
-// ตั้งขนาด canvas ให้พอดีกรอบ (รองรับจอ retina) และเก็บลายเส้นเดิมไว้ตอนย่อ/ขยาย
+// Size the canvas to fit its container (supports retina screens) and keep the existing strokes when resizing
 function fitCanvas() {
     const c = canvasEl.value
     const board = boardEl.value
@@ -59,7 +59,7 @@ function onDown(e: PointerEvent) {
     const [x, y] = pos(e)
     ctx.beginPath()
     ctx.moveTo(x, y)
-    // จุดเดียว (แตะแล้วปล่อย) ก็ให้เห็นเป็นจุด
+    // A single point (tap and release) should still show up as a dot
     applyStyle()
     ctx.lineTo(x + 0.01, y)
     ctx.stroke()

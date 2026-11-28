@@ -10,10 +10,10 @@ import { GameState } from '@/models/types';
 </script>
 
 <template>
-    <!-- guessing: กระดานเปล่า รอแสดงภาพที่คนอื่นวาด -->
+    <!-- guessing: empty board, waiting to show the drawing from the others -->
     <div v-if="Game.gameState.value === GameState.guessing" class="board"></div>
 
-    <!-- guessed: ทายถูกแล้ว รอคนอื่น -->
+    <!-- guessed: already guessed correctly, waiting for the others -->
     <div v-else class="board center">
         <div class="big-emoji">🎉</div>
         <h1 class="ok">Correct!</h1>
